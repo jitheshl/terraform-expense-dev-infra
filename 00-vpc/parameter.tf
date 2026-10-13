@@ -19,3 +19,9 @@ resource "aws_ssm_parameter" "database-subnet-id"{
     type = "StringList"
     value = join(",",module.vpc.aws-database-subnet)
 }
+
+resource "aws_ssm_parameter" "database-subnet-group"{
+    name = "/${var.project_name}/${var.environment}/database-subnet-group"
+    type = "String"
+    value = aws_db_subnet_group.expense_dev.name
+}

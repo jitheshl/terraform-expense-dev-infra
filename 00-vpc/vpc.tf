@@ -8,3 +8,8 @@ module "vpc"{
     database_cidr_blocks = var.database_cidr_blocks
     is_peering_required = true
 }
+
+resource "aws_db_subnet_group" "expense_dev"{
+    name = "${var.project_name}-${var.environment}"
+    subnet_ids  = module.vpc.aws-database-subnet
+}

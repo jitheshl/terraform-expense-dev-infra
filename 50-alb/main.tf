@@ -3,11 +3,12 @@ module "alb" {
   internal = true
 
   name    = "${var.project_name}-${var.environment}-alb"
-  # deletion_protection = false
+  
   vpc_id  = local.vpc_id
   create_security_group = false
   security_groups = [local.alb-sg-id]
   subnets = local.private-subnet-id
+  enable_deletion_protection = false
   tags =merge( 
     var.common_tags,{
         Name = "${var.project_name}-${var.environment}-alb"
